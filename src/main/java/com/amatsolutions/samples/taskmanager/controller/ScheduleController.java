@@ -8,6 +8,6 @@ public class ScheduleController {
 
     @GetMapping("/schedule")
     public String schedule() {
-        return "forward:/schedule/index.html";
+        return "forward:index.html";
     }
 }
