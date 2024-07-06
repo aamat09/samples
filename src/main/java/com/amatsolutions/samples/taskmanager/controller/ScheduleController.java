@@ -10,4 +10,9 @@ public class ScheduleController {
     public String schedule() {
         return "forward:index.html";
     }
+
+    @GetMapping("/pdf")
+    public String pdfUpload() {
+        return "forward:index.html";
+    }
 }
