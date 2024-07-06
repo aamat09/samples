@@ -32,4 +32,18 @@ public class PdfController {
             return ResponseEntity.status(500).body(objectMapper.writeValueAsString(response));
         }
     }
+
+    @GetMapping("/getText")
+    public ResponseEntity<String> getPdfText(@RequestParam("id") Long id) throws JsonProcessingException {
+        try {
+            String text = pdfService.getPdfText(id);
+            ObjectMapper objectMapper = new ObjectMapper();
+            Map response = Map.of("text", text);
+            return ResponseEntity.ok(objectMapper.writeValueAsString(response));
+        } catch (IOException e) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Map response = Map.of("message", "Failed to get PDF text: " + e.getMessage());
+            return ResponseEntity.status(500).body(objectMapper.writeValueAsString(response));
+        }
+    }
 }

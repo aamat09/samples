@@ -20,6 +20,7 @@ public class PdfService {
         PDDocument document = PDDocument.load(file.getInputStream());
         PDFTextStripper pdfStripper = new PDFTextStripper();
         String text = pdfStripper.getText(document);
+        System.out.println(text);
         document.close();
 
         PdfData pdfData = new PdfData();
@@ -27,5 +28,9 @@ public class PdfService {
         pdfData.setText(text);
 
         pdfDataRepository.save(pdfData);
+    }
+
+    public String getPdfText(Long id) {
+        return pdfDataRepository.findById(id).map(PdfData::getText).orElse(null);
     }
 }
