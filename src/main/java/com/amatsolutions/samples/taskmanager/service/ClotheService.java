@@ -67,4 +67,8 @@ public class ClotheService {
 
         clotheRepository.saveAll(clothes);
     }
+
+    public List<Clothe> getAllClothes() {
+        return clotheRepository.findAll();
+    }
 }
