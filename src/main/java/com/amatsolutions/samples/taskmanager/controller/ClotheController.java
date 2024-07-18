@@ -20,7 +20,7 @@ public class ClotheController {
         return "Scraping and saving clothes completed successfully";
     }
 
-    @GetMapping("/clothes")
+    @GetMapping("/api/clothes")
     public List<Clothe> getClothes() {
         return clotheService.getAllClothes();
     }
