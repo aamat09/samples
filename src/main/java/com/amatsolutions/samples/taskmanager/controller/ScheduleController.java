@@ -15,4 +15,9 @@ public class ScheduleController {
     public String pdfUpload() {
         return "forward:index.html";
     }
+
+    @GetMapping("/scraping")
+    public String scraper() {
+        return "forward:index.html";
+    }
 }
