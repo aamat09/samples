@@ -29,7 +29,7 @@ public class ClotheService {
 
     @PostConstruct
     public void init() {
-        driver = chromeDriverUtils.initializeDriver();
+
     }
 
     @PreDestroy
@@ -40,6 +40,7 @@ public class ClotheService {
     }
 
     public void scrapeClothes() {
+        driver = chromeDriverUtils.initializeDriver();
         String url = environment.getProperty("clothes.url");
         driver.get(url);
         List<Clothe> clothes = new ArrayList<>();
