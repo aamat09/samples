@@ -20,4 +20,20 @@ public class ScheduleController {
     public String scraper() {
         return "forward:index.html";
     }
+
+    @GetMapping("/marketplace")
+    public String login() {
+        return "forward:index.html";
+    }
+
+    @GetMapping("/marketplace/customer-dashboard")
+    public String customer() {
+        return "forward:index.html";
+    }
+
+    @GetMapping("/marketplace/dealer-dashboard")
+    public String dealer() {
+        return "forward:index.html";
+    }
+
 }
