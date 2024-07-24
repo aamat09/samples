@@ -69,6 +69,18 @@ public class ClotheService {
         clotheRepository.saveAll(clothes);
     }
 
+    public boolean saveAll(List<Clothe> clothes) {
+        List<Clothe> newClothes = new ArrayList<>();
+        for (Clothe clothe : clothes) {
+            Clothe existingClothe = clotheRepository.findByTitle(clothe.getTitle());
+            if (existingClothe == null) {
+                newClothes.add(clothe);
+            }
+        }
+        clotheRepository.saveAll(newClothes);
+        return true;
+    }
+
     public List<Clothe> getAllClothes() {
         return clotheRepository.findAll();
     }

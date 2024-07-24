@@ -123,7 +123,7 @@ public class HtmlProcessingService {
 
     private ProductResponse extractProducts(String url, ProductResponse productResponse) {
 
-        List<ProductInfo> products = new ArrayList<>();
+        List<Clothe> products = new ArrayList<>();
 
         WebDriver driver = chromeDriverUtils.initializeDriver();
         driver.get(url);
@@ -138,7 +138,7 @@ public class HtmlProcessingService {
             String rating = (productElement.findElement(By.cssSelector(productResponse.getRating())).getText());
             String image = (productElement.findElement(By.cssSelector(productResponse.getImage())).getAttribute("src"));
 
-            products.add(new ProductInfo(title, description, rating, image, price));
+            products.add(new Clothe(title, description, rating, image, price));
             // Check for existing product and update if necessary
         }
         productResponse.setProducts(products);
@@ -153,7 +153,7 @@ public class HtmlProcessingService {
         private String rating;
         private String image;
         private String price;
-        private List<ProductInfo> products;
+        private List<Clothe> products;
         private String parent;
 
         public ProductResponse(boolean response) {

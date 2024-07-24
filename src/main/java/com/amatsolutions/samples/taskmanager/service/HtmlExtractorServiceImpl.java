@@ -2,6 +2,8 @@ package com.amatsolutions.samples.taskmanager.service;
 
 import com.amatsolutions.samples.taskmanager.model.ProductInfo;
 import com.amatsolutions.samples.taskmanager.util.ChromeDriverUtils;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +25,9 @@ public class HtmlExtractorServiceImpl implements HtmlExtractorService {
     @Autowired
     HtmlProcessingService htmlProcessingService;
 
+    @Autowired
+    ClotheService clotheService;
+
     @Value("${openai.api.key}")
     private String openaiApiKey;
 
@@ -42,9 +47,16 @@ public class HtmlExtractorServiceImpl implements HtmlExtractorService {
 
         if (productResponse.isResponse()) {
             System.out.println(productResponse.getProducts().toString());
+            clotheService.saveAll(productResponse.getProducts());
         } else {
             return "No product information found.";
         }
-        return pageSource;
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(productResponse.getProducts());
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "Failed to convert product information to JSON";
+        }
     }
 }
