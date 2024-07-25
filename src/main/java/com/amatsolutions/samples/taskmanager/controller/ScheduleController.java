@@ -36,4 +36,9 @@ public class ScheduleController {
         return "forward:index.html";
     }
 
+    @GetMapping("/game")
+    public String game() {
+        return "forward:index.html";
+    }
+
 }
